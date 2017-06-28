@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {ContentCls as ProductContent} from './Pages/Products/Content';
 import {ContentCls as FeaturedProductContent} from './Pages/FeaturedProducts/Content';
 import {ContentCls as CartContent} from './Pages/Cart/Content';
+import {ContentCls as HomeContent} from './Pages/Home/Content';
 
 import Page from './Components/PageContent/Item';
 import Cart from './Components/PageContent/CartPopup/Item';
@@ -12,26 +13,6 @@ import Header from './Components/Header/Item';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import './index.css';
-
-// ReactDOM.render(
-//     (
-//         <Router>
-//             <div className="content-center fixed-header-margin">
-//                 <div id="header" className="header-wrapper style-10">
-//                     <Route path="/product" component={ProductHeader} />
-//                     <Route path="/featured" component={FeaturedProductHeader} />
-//                     <div className="clear"></div>
-//                 </div>
-//                 <Page>
-//                     <Route path="/product" component={ProductContent} />
-//                     <Route path="/featured" component={FeaturedProductContent} />
-//                     <Footer />
-//                 </Page>
-//             </div>
-//         </Router>
-//     ),
-//     document.getElementById('content-block')
-// )
 
 class App extends React.Component{
     constructor(){
@@ -62,6 +43,9 @@ class App extends React.Component{
                             )} />
                             <Route path="/cart" render={comp=>(
                                 <CartContent setTitle={this.setTitle.bind(this)} />
+                            )} />
+                            <Route path="/home" render={comp=>(
+                                <HomeContent setTitle={this.setTitle.bind(this)} />
                             )} />
                             <Footer />
                         {/*</Page>*/}

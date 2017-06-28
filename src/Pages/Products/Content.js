@@ -19,9 +19,7 @@ class ContentCls extends Component{
     this.props.setTitle("Products");
   }
   componentWillMount(){
-    loadjs("js/global.js",function(){
-      alert('load');
-    });
+    loadjs("js/global.js");
   }
 
   render(){

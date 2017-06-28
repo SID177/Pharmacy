@@ -21,7 +21,6 @@
 /* 07 - swiper sliders */
 /* 08 - buttons, clicks, hovers */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-
 $(function() {
 
 	"use strict";
@@ -43,6 +42,7 @@ $(function() {
 		$('.fixed-header-margin').css({'padding-top':$('header').outerHeight(true)});
 		$('.parallax-slide').css({'height':winH});
 	}
+	window.pageCalculations=pageCalculations;
 
 	/*=================================*/
 	/* 03 - function on document ready */
@@ -74,15 +74,18 @@ $(function() {
 		$('.navigation:not(.disable-animation)').addClass('disable-animation');
 
 		$('.swiper-container.initialized[data-slides-per-view="responsive"]').each(function(){
-			var thisSwiper = swipers['swiper-'+$(this).attr('id')], $t = $(this), slidesPerViewVar = updateSlidesPerView($t), centerVar = thisSwiper.params.centeredSlides;
-			thisSwiper.params.slidesPerView = slidesPerViewVar;
-			thisSwiper.reInit();
-			if(!centerVar){
-				var paginationSpan = $t.find('.pagination span');
-				var paginationSlice = paginationSpan.hide().slice(0,(paginationSpan.length+1-slidesPerViewVar));
-				if(paginationSlice.length<=1 || slidesPerViewVar>=$t.find('.swiper-slide').length) $t.addClass('pagination-hidden');
-				else $t.removeClass('pagination-hidden');
-				paginationSlice.show();
+			var thisSwiper = swipers['swiper-'+$(this).attr('id')];
+			if(thisSwiper!=undefined){
+				var $t = $(this), slidesPerViewVar = updateSlidesPerView($t), centerVar = thisSwiper.params.centeredSlides;
+				thisSwiper.params.slidesPerView = slidesPerViewVar;
+				thisSwiper.reInit();
+				if(!centerVar){
+					var paginationSpan = $t.find('.pagination span');
+					var paginationSlice = paginationSpan.hide().slice(0,(paginationSpan.length+1-slidesPerViewVar));
+					if(paginationSlice.length<=1 || slidesPerViewVar>=$t.find('.swiper-slide').length) $t.addClass('pagination-hidden');
+					else $t.removeClass('pagination-hidden');
+					paginationSlice.show();
+				}
 			}
 		});
 	}
@@ -95,6 +98,7 @@ $(function() {
 			resizeCall();
 		}, false);
 	}
+	window.resizeCall=resizeCall;
 
 	/*==============================*/
 	/* 06 - function on page scroll */
@@ -205,6 +209,7 @@ $(function() {
 		});
 
 	}
+	window.initSwiper=initSwiper;
 
 	function updateSlidesPerView(swiperContainer){
 		if(winW>=1920 && swiperContainer.parent().hasClass('full-width-product-slider')) return 6;

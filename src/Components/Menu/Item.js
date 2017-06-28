@@ -14,7 +14,9 @@ class Item extends Component {
             <nav>
               <ul>
 
-                <MenuItem label="Home" href="/featured">
+                <MenuItem label="Home" href="/home">
+                </MenuItem>
+                <MenuItem label="Featured Products" href="/featured">
                   <SubMenu>
                     <SubMenuItem label="home1" href="/home1.html" />
                   </SubMenu>
